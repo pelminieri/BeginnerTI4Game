@@ -7,24 +7,50 @@
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #0b0d17;
+            /* Space Background */
+            background: url('http://googleusercontent.com/image_collection/image_retrieval/1873852098563520586_0') no-repeat center center fixed;
+            background-size: cover;
             color: #e0e0e0;
             line-height: 1.6;
             margin: 0;
             padding: 20px;
         }
-        .container { max-width: 900px; margin: 0 auto; }
-        header { text-align: center; padding: 20px; border-bottom: 2px solid #444; margin-bottom: 30px; }
-        h1 { color: #ffcc00; text-transform: uppercase; letter-spacing: 2px; }
+        
+        /* Adds a dark overlay so text remains readable over the stars */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5); 
+            z-index: -1;
+        }
+
+        .container { max-width: 900px; margin: 0 auto; position: relative; }
+        
+        header { 
+            text-align: center; 
+            padding: 30px; 
+            border-bottom: 2px solid rgba(255, 204, 0, 0.3); 
+            margin-bottom: 30px; 
+            background: rgba(26, 28, 44, 0.8);
+            border-radius: 12px;
+        }
+        
+        h1 { color: #ffcc00; text-transform: uppercase; letter-spacing: 4px; text-shadow: 0 0 15px rgba(255, 204, 0, 0.5); }
         
         .info-box {
-            background: #2a2d45;
+            background: rgba(42, 45, 69, 0.9);
             padding: 20px;
             border-radius: 8px;
             margin-top: 20px;
             border: 1px solid #ffcc00;
             text-align: left;
+            backdrop-filter: blur(5px);
         }
+
         .btn {
             display: inline-block;
             background: #ffcc00;
@@ -34,31 +60,49 @@
             font-weight: bold;
             border-radius: 5px;
             margin-top: 15px;
+            transition: transform 0.2s;
         }
+        .btn:hover { transform: scale(1.05); }
 
         .faction-card {
-            background: #1a1c2c;
-            border: 1px solid #333;
-            border-radius: 8px;
+            background: rgba(26, 28, 44, 0.85); /* Slightly transparent */
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
             margin-bottom: 40px;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.8);
+            backdrop-filter: blur(8px); /* Frosted glass effect */
         }
+
         .faction-header {
-            background: #2a2d45;
-            padding: 15px;
+            background: rgba(42, 45, 69, 0.95);
+            padding: 15px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            border-bottom: 1px solid rgba(255, 204, 0, 0.2);
         }
-        .speaker-number { background: #ffcc00; color: black; font-weight: bold; padding: 5px 12px; border-radius: 20px; }
-        .content-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding: 20px; padding-bottom: 10px; }
-        .image-box { text-align: center; }
-        .image-box img { max-width: 100%; border-radius: 4px; border: 1px solid #444; }
-        .description { padding: 0 25px 25px 25px; border-top: 1px solid #333; padding-top: 20px; background: rgba(0,0,0,0.2); }
+
+        .speaker-number { 
+            background: #ffcc00; 
+            color: black; 
+            font-weight: bold; 
+            padding: 5px 15px; 
+            border-radius: 20px; 
+            box-shadow: 0 0 10px rgba(255, 204, 0, 0.4);
+        }
+
+        .content-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding: 20px; }
+        .image-box img { max-width: 100%; border-radius: 6px; border: 1px solid rgba(255,255,255,0.1); }
+        
+        .description { 
+            padding: 25px; 
+            border-top: 1px solid rgba(255,255,255,0.1); 
+            background: rgba(0,0,0,0.3); 
+        }
+
         h2, h3 { color: #fff; margin-top: 0; }
         a { color: #ffcc00; text-decoration: none; }
-        a:hover { text-decoration: underline; }
 
         @media (max-width: 600px) { .content-grid { grid-template-columns: 1fr; } }
     </style>
@@ -68,17 +112,17 @@
 <div class="container">
     <header>
         <h1>TI Draft: April 18th</h1>
-        <p>Welcome to our Beginner Friendly Session! Prepare for a day of galactic conquest.</p>
+        <p>Galactic Council Briefing: Prepare for conquest.</p>
         
         <div class="info-box">
             <h3>Draft Rules & Tutorial</h3>
             <ul>
-                <li><strong>Speaker Order:</strong> A higher speaker order determines your seat at the table and your order of priority when picking a strategy card.</li>
-                <li><strong>Selection:</strong> Players are required to choose one of the 9 available combinations of Faction, Slice, and Speaker Order.</li>
-                <li><strong>New Players:</strong> Please watch the primer below to understand the rules and victory conditions.</li>
+                <li><strong>Speaker Order:</strong> Determines table seating and strategy card priority.</li>
+                <li><strong>Selection:</strong> Choose 1 of 9 combinations of Faction + Slice + Speaker.</li>
+                <li><strong>New Players:</strong> Please watch the briefing below.</li>
             </ul>
             <div style="text-align: center;">
-                <a href="https://youtu.be/toGTh6niLqE" target="_blank" class="btn">Watch Video Tutorial</a>
+                <a href="https://youtu.be/toGTh6niLqE" target="_blank" class="btn">Initiate Briefing</a>
             </div>
         </div>
     </header>
@@ -91,7 +135,7 @@
         </div>
         <div class="description">
             <h3>Faction Playstyle</h3>
-            <p>The Naaz-Rokha are exploration specialists. They can explore a planet twice and gain Relics for only two fragments instead of three. Their versatile mechs can transform into space-combat-ready "Z-Grafts," making them formidable both on the ground and in the stars.</p>
+            <p>Exploration specialists who uncover relics and command powerful mechs that transform for space combat.</p>
         </div>
     </div>
 
@@ -103,7 +147,7 @@
         </div>
         <div class="description">
             <h3>Faction Playstyle</h3>
-            <p>Masters of logistics and infantry. Sol generates extra command tokens and can drop infantry directly onto planets from orbit without needing a transport. They are incredibly difficult to dislodge once they occupy a system.</p>
+            <p>Logistics masters with unrivaled infantry deployment and command token generation.</p>
         </div>
     </div>
 
@@ -115,7 +159,7 @@
         </div>
         <div class="description">
             <h3>Faction Playstyle</h3>
-            <p>Mobile and elusive, the Ghosts play with the board's wormholes. They treat all wormholes as adjacent and can even move the Delta wormhole to different systems. They excel at attacking from unexpected angles across the galaxy.</p>
+            <p>Wormhole manipulators who can strike from any corner of the galaxy using the delta wormhole.</p>
         </div>
     </div>
 
@@ -127,7 +171,7 @@
         </div>
         <div class="description">
             <h3>Faction Playstyle</h3>
-            <p>The merchant kings. Hacan can trade with any player, regardless of proximity, and are the only faction that can trade Action Cards. If they are in the game, the economy flows through them.</p>
+            <p>The merchant kings who can trade with anyone and barter with action cards to control the board's economy.</p>
         </div>
     </div>
 
@@ -139,7 +183,7 @@
         </div>
         <div class="description">
             <h3>Faction Playstyle</h3>
-            <p>Industrial military might. Letnev can sustain larger fleets and spend trade goods to boost their combat rolls. They focus on building massive armadas and "Non-Euclidean Shielding" to absorb damage.</p>
+            <p>A military powerhouse focusing on massive fleets, industrial production, and non-euclidean shielding.</p>
         </div>
     </div>
 
@@ -151,7 +195,7 @@
         </div>
         <div class="description">
             <h3>Faction Playstyle</h3>
-            <p>Diplomats of the void. They gain benefits when players move through their systems and can safely navigate nebulae. They thrive on negotiation and "neighborly" cooperation rather than direct conflict.</p>
+            <p>Diplomats of the deep void who thrive on cooperation and movement through nebulae.</p>
         </div>
     </div>
 
@@ -163,7 +207,7 @@
         </div>
         <div class="description">
             <h3>Faction Playstyle</h3>
-            <p>The ultimate defensive faction. Xxcha uses powerful PDS systems to fire into adjacent systems and can use their political influence to quash unwanted laws or score extra points in the late game.</p>
+            <p>Peaceful defenders who use orbital cannons and political mastery to stall aggression.</p>
         </div>
     </div>
 
@@ -175,7 +219,7 @@
         </div>
         <div class="description">
             <h3>Faction Playstyle</h3>
-            <p>Raw aggressive force. The Sardakk swarm receives a constant +1 to all combat rolls. They don't start with technology, but they don't need it to win battles through sheer numerical and combat superiority.</p>
+            <p>The eternal swarm. Unmatched in raw combat strength with a permanent bonus to all attack rolls.</p>
         </div>
     </div>
 
@@ -187,10 +231,11 @@
         </div>
         <div class="description">
             <h3>Faction Playstyle</h3>
-            <p>A specialized defensive force. This faction focuses on fortifying its home slice and outlasting the competition. Expect heavy resistance if you attempt to breach their borders late in the game.</p>
+            <p>A stalwart defensive faction designed to hold their home slice against all odds.</p>
         </div>
     </div>
 
 </div>
+
 </body>
 </html>
