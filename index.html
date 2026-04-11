@@ -7,8 +7,8 @@
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            /* Space Background */
-            background: url('http://googleusercontent.com/image_collection/image_retrieval/1873852098563520586_0') no-repeat center center fixed;
+            /* Using your specified background file */
+            background: url('starry_sky_during_nighttime_space_hd_galaxy.jpg') no-repeat center center fixed;
             background-size: cover;
             color: #e0e0e0;
             line-height: 1.6;
@@ -16,15 +16,12 @@
             padding: 20px;
         }
         
-        /* Adds a dark overlay so text remains readable over the stars */
+        /* Subtle overlay to help text pop against the stars */
         body::before {
             content: "";
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5); 
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.3); 
             z-index: -1;
         }
 
@@ -33,13 +30,14 @@
         header { 
             text-align: center; 
             padding: 30px; 
-            border-bottom: 2px solid rgba(255, 204, 0, 0.3); 
             margin-bottom: 30px; 
             background: rgba(26, 28, 44, 0.8);
+            border: 1px solid rgba(255, 204, 0, 0.3);
             border-radius: 12px;
+            backdrop-filter: blur(5px);
         }
         
-        h1 { color: #ffcc00; text-transform: uppercase; letter-spacing: 4px; text-shadow: 0 0 15px rgba(255, 204, 0, 0.5); }
+        h1 { color: #ffcc00; text-transform: uppercase; letter-spacing: 4px; text-shadow: 0 0 15px rgba(255, 204, 0, 0.5); margin: 0; }
         
         .info-box {
             background: rgba(42, 45, 69, 0.9);
@@ -48,7 +46,6 @@
             margin-top: 20px;
             border: 1px solid #ffcc00;
             text-align: left;
-            backdrop-filter: blur(5px);
         }
 
         .btn {
@@ -65,13 +62,13 @@
         .btn:hover { transform: scale(1.05); }
 
         .faction-card {
-            background: rgba(26, 28, 44, 0.85); /* Slightly transparent */
+            background: rgba(26, 28, 44, 0.85);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 12px;
             margin-bottom: 40px;
             overflow: hidden;
             box-shadow: 0 8px 32px rgba(0,0,0,0.8);
-            backdrop-filter: blur(8px); /* Frosted glass effect */
+            backdrop-filter: blur(10px);
         }
 
         .faction-header {
@@ -89,20 +86,21 @@
             font-weight: bold; 
             padding: 5px 15px; 
             border-radius: 20px; 
-            box-shadow: 0 0 10px rgba(255, 204, 0, 0.4);
         }
 
         .content-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding: 20px; }
         .image-box img { max-width: 100%; border-radius: 6px; border: 1px solid rgba(255,255,255,0.1); }
-        
+        .image-box p { margin: 10px 0 0 0; font-size: 0.9em; }
+
         .description { 
             padding: 25px; 
             border-top: 1px solid rgba(255,255,255,0.1); 
-            background: rgba(0,0,0,0.3); 
+            background: rgba(0,0,0,0.4); 
         }
 
-        h2, h3 { color: #fff; margin-top: 0; }
-        a { color: #ffcc00; text-decoration: none; }
+        h2, h3 { color: #fff; margin: 0; }
+        a { color: #ffcc00; text-decoration: none; font-weight: bold; }
+        a:hover { text-decoration: underline; }
 
         @media (max-width: 600px) { .content-grid { grid-template-columns: 1fr; } }
     </style>
@@ -135,7 +133,7 @@
         </div>
         <div class="description">
             <h3>Faction Playstyle</h3>
-            <p>Exploration specialists who uncover relics and command powerful mechs that transform for space combat.</p>
+            <p>Masters of exploration who uncover relics and command powerful mechs that transform for space combat. They thrive on uncovering secrets from the galaxy's distant past.</p>
         </div>
     </div>
 
@@ -147,7 +145,7 @@
         </div>
         <div class="description">
             <h3>Faction Playstyle</h3>
-            <p>Logistics masters with unrivaled infantry deployment and command token generation.</p>
+            <p>A logistics-heavy faction with unrivaled infantry deployment. Their "Orbital Drop" ability allows them to flood planets with ground forces without moving a single ship.</p>
         </div>
     </div>
 
@@ -159,7 +157,7 @@
         </div>
         <div class="description">
             <h3>Faction Playstyle</h3>
-            <p>Wormhole manipulators who can strike from any corner of the galaxy using the delta wormhole.</p>
+            <p>Wormhole manipulators who can strike from any corner of the galaxy. They are the most mobile faction in the game, treating the entire galaxy as their personal backyard.</p>
         </div>
     </div>
 
@@ -171,7 +169,7 @@
         </div>
         <div class="description">
             <h3>Faction Playstyle</h3>
-            <p>The merchant kings who can trade with anyone and barter with action cards to control the board's economy.</p>
+            <p>The merchant kings who can trade with anyone and barter with action cards. They control the game's economy and thrive when everyone else is spending.</p>
         </div>
     </div>
 
@@ -183,7 +181,7 @@
         </div>
         <div class="description">
             <h3>Faction Playstyle</h3>
-            <p>A military powerhouse focusing on massive fleets, industrial production, and non-euclidean shielding.</p>
+            <p>A military industrial powerhouse. They focus on massive fleets, superior production capacity, and "Non-Euclidean Shielding" to absorb massive amounts of damage.</p>
         </div>
     </div>
 
@@ -195,7 +193,7 @@
         </div>
         <div class="description">
             <h3>Faction Playstyle</h3>
-            <p>Diplomats of the deep void who thrive on cooperation and movement through nebulae.</p>
+            <p>Keepers of the void who thrive on diplomacy and movement through nebulae. They are excellent at negotiating safe passage and benefiting from others' exploration.</p>
         </div>
     </div>
 
@@ -207,7 +205,7 @@
         </div>
         <div class="description">
             <h3>Faction Playstyle</h3>
-            <p>Peaceful defenders who use orbital cannons and political mastery to stall aggression.</p>
+            <p>Defensive masters who use orbital cannons (PDS) and political influence to stall aggression and control the Galactic Council's agenda.</p>
         </div>
     </div>
 
@@ -219,7 +217,7 @@
         </div>
         <div class="description">
             <h3>Faction Playstyle</h3>
-            <p>The eternal swarm. Unmatched in raw combat strength with a permanent bonus to all attack rolls.</p>
+            <p>A relentless swarm. They receive a permanent +1 bonus to all combat rolls, making even their basic units a major threat in any engagement.</p>
         </div>
     </div>
 
@@ -231,7 +229,7 @@
         </div>
         <div class="description">
             <h3>Faction Playstyle</h3>
-            <p>A stalwart defensive faction designed to hold their home slice against all odds.</p>
+            <p>A stalwart defensive faction designed to fortify their home slice and punish anyone foolish enough to breach their sovereign borders.</p>
         </div>
     </div>
 
