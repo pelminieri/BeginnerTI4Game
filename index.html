@@ -7,7 +7,6 @@
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            /* Using your specified background file */
             background: url('starry_sky_during_nighttime_space_hd_galaxy.jpg') no-repeat center center fixed;
             background-size: cover;
             color: #e0e0e0;
@@ -16,12 +15,11 @@
             padding: 20px;
         }
         
-        /* Subtle overlay to help text pop against the stars */
         body::before {
             content: "";
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.3); 
+            background: rgba(0, 0, 0, 0.4); 
             z-index: -1;
         }
 
@@ -29,8 +27,8 @@
         
         header { 
             text-align: center; 
-            padding: 30px; 
-            margin-bottom: 30px; 
+            padding: 20px; 
+            margin-bottom: 20px; 
             background: rgba(26, 28, 44, 0.8);
             border: 1px solid rgba(255, 204, 0, 0.3);
             border-radius: 12px;
@@ -38,34 +36,35 @@
         }
         
         h1 { color: #ffcc00; text-transform: uppercase; letter-spacing: 4px; text-shadow: 0 0 15px rgba(255, 204, 0, 0.5); margin: 0; }
-        
-        .info-box {
-            background: rgba(42, 45, 69, 0.9);
-            padding: 20px;
-            border-radius: 8px;
-            margin-top: 20px;
-            border: 1px solid #ffcc00;
-            text-align: left;
-        }
 
-        .btn {
-            display: inline-block;
-            background: #ffcc00;
-            color: #000;
-            padding: 10px 20px;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 5px;
-            margin-top: 15px;
-            transition: transform 0.2s;
+        /* Navigation Tabs */
+        .tabs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
         }
-        .btn:hover { transform: scale(1.05); }
+        .tab-btn {
+            background: rgba(42, 45, 69, 0.9);
+            color: white;
+            border: 1px solid #ffcc00;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .tab-btn.active { background: #ffcc00; color: #000; }
+
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
 
         .faction-card {
             background: rgba(26, 28, 44, 0.85);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 12px;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             overflow: hidden;
             box-shadow: 0 8px 32px rgba(0,0,0,0.8);
             backdrop-filter: blur(10px);
@@ -80,27 +79,23 @@
             border-bottom: 1px solid rgba(255, 204, 0, 0.2);
         }
 
-        .speaker-number { 
+        .player-tag { 
             background: #ffcc00; 
             color: black; 
             font-weight: bold; 
-            padding: 5px 15px; 
-            border-radius: 20px; 
+            padding: 4px 12px; 
+            border-radius: 4px;
+            font-size: 0.85em;
         }
+
+        .speaker-number { color: #aaa; font-size: 0.85em; font-weight: bold; }
 
         .content-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding: 20px; }
         .image-box img { max-width: 100%; border-radius: 6px; border: 1px solid rgba(255,255,255,0.1); }
-        .image-box p { margin: 10px 0 0 0; font-size: 0.9em; }
+        .full-map-img { width: 100%; border-radius: 8px; border: 2px solid #ffcc00; }
 
-        .description { 
-            padding: 25px; 
-            border-top: 1px solid rgba(255,255,255,0.1); 
-            background: rgba(0,0,0,0.4); 
-        }
-
-        h2, h3 { color: #fff; margin: 0; }
+        h2 { color: #fff; margin: 0; font-size: 1.4em; }
         a { color: #ffcc00; text-decoration: none; font-weight: bold; }
-        a:hover { text-decoration: underline; }
 
         @media (max-width: 600px) { .content-grid { grid-template-columns: 1fr; } }
     </style>
@@ -110,130 +105,115 @@
 <div class="container">
     <header>
         <h1>TI Draft: April 18th</h1>
-        <p>Galactic Council Briefing: Prepare for conquest.</p>
-        
-        <div class="info-box">
-            <h3>Draft Rules & Tutorial</h3>
-            <ul>
-                <li><strong>Speaker Order:</strong> Determines table seating and strategy card priority.</li>
-                <li><strong>Selection:</strong> Choose 1 of 9 combinations of Faction + Slice + Speaker.</li>
-                <li><strong>New Players:</strong> Please watch the briefing below.</li>
-            </ul>
-            <div style="text-align: center;">
-                <a href="https://youtu.be/toGTh6niLqE" target="_blank" class="btn">Initiate Briefing</a>
-            </div>
-        </div>
+        <p>The Factions have been chosen. Prepare for war.</p>
     </header>
 
-    <div class="faction-card">
-        <div class="faction-header"><h2>Naaz-Rokha Alliance</h2><span class="speaker-number">Speaker #1</span></div>
-        <div class="content-grid">
-            <div class="image-box"><img src="r_naazrokha.jpg"><p><a href="https://twilight-imperium.fandom.com/wiki/The_Naaz-Rokha_Alliance" target="_blank">View Wiki</a></p></div>
-            <div class="image-box"><img src="NR-Slice.png"><p>Map Slice</p></div>
+    <nav class="tabs">
+        <button class="tab-btn active" onclick="openTab(event, 'drafted')">Drafted</button>
+        <button class="tab-btn" onclick="openTab(event, 'map')">Full Map</button>
+        <button class="tab-btn" onclick="openTab(event, 'not-drafted')">Not Drafted</button>
+    </nav>
+
+    <div id="drafted" class="tab-content active">
+        
+        <div class="faction-card">
+            <div class="faction-header"><h2>Naaz-Rokha Alliance</h2><div class="player-tag">VALERIO</div></div>
+            <div class="content-grid">
+                <div class="image-box"><img src="r_naazrokha.jpg"></div>
+                <div class="image-box"><img src="NR-Slice.png"></div>
+            </div>
         </div>
-        <div class="description">
-            <h3>Faction Playstyle</h3>
-            <p>Masters of exploration who uncover relics and command powerful mechs that transform for space combat. They thrive on uncovering secrets from the galaxy's distant past.</p>
+
+        <div class="faction-card">
+            <div class="faction-header"><h2>Federation of Sol</h2><div class="player-tag">RICO</div></div>
+            <div class="content-grid">
+                <div class="image-box"><img src="solfederation.jpg"></div>
+                <div class="image-box"><img src="Sol-Slice.png"></div>
+            </div>
+        </div>
+
+        <div class="faction-card">
+            <div class="faction-header"><h2>The Ghosts of Creuss</h2><div class="player-tag">ALBERTO</div></div>
+            <div class="content-grid">
+                <div class="image-box"><img src="r_creuss.jpg"></div>
+                <div class="image-box"><img src="Ghost-Slice.png"></div>
+            </div>
+        </div>
+
+        <div class="faction-card">
+            <div class="faction-header"><h2>Barony of Letnev</h2><div class="player-tag">ARIANA</div></div>
+            <div class="content-grid">
+                <div class="image-box"><img src="r_letnev.jpg"></div>
+                <div class="image-box"><img src="Barony-Slice.png"></div>
+            </div>
+        </div>
+
+        <div class="faction-card">
+            <div class="faction-header"><h2>The Empyrean</h2><div class="player-tag">NICOLA</div></div>
+            <div class="content-grid">
+                <div class="image-box"><img src="r_empyrean.jpg"></div>
+                <div class="image-box"><img src="Empyrean-Slice.png"></div>
+            </div>
+        </div>
+
+        <div class="faction-card">
+            <div class="faction-header"><h2>The Last Bastion</h2><div class="player-tag">DRAFTED</div></div>
+            <div class="content-grid">
+                <div class="image-box"><img src="r_last_bastion.jpg"></div>
+                <div class="image-box"><img src="Last Bastion Slice.png"></div>
+            </div>
         </div>
     </div>
 
-    <div class="faction-card">
-        <div class="faction-header"><h2>Federation of Sol</h2><span class="speaker-number">Speaker #2</span></div>
-        <div class="content-grid">
-            <div class="image-box"><img src="solfederation.jpg"><p><a href="https://twilight-imperium.fandom.com/wiki/The_Federation_of_Sol" target="_blank">View Wiki</a></p></div>
-            <div class="image-box"><img src="Sol-Slice.png"><p>Map Slice</p></div>
-        </div>
-        <div class="description">
-            <h3>Faction Playstyle</h3>
-            <p>A logistics-heavy faction with unrivaled infantry deployment. Their "Orbital Drop" ability allows them to flood planets with ground forces without moving a single ship.</p>
+    <div id="map" class="tab-content">
+        <div class="faction-card" style="padding: 20px; text-align: center;">
+            <img src="full map.png" class="full-map-img" alt="Full Galaxy Map">
         </div>
     </div>
 
-    <div class="faction-card">
-        <div class="faction-header"><h2>The Ghosts of Creuss</h2><span class="speaker-number">Speaker #3</span></div>
-        <div class="content-grid">
-            <div class="image-box"><img src="r_creuss.jpg"><p><a href="https://twilight-imperium.fandom.com/wiki/The_Ghosts_of_Creuss" target="_blank">View Wiki</a></p></div>
-            <div class="image-box"><img src="Ghost-Slice.png"><p>Map Slice</p></div>
+    <div id="not-drafted" class="tab-content">
+        <div class="faction-card">
+            <div class="faction-header"><h2>Emirates of Hacan</h2></div>
+            <div class="content-grid">
+                <div class="image-box"><img src="r_hacan.jpg"></div>
+                <div class="image-box"><img src="Hacan-Slice.png"></div>
+            </div>
         </div>
-        <div class="description">
-            <h3>Faction Playstyle</h3>
-            <p>Wormhole manipulators who can strike from any corner of the galaxy. They are the most mobile faction in the game, treating the entire galaxy as their personal backyard.</p>
-        </div>
-    </div>
 
-    <div class="faction-card">
-        <div class="faction-header"><h2>Emirates of Hacan</h2><span class="speaker-number">Speaker #4</span></div>
-        <div class="content-grid">
-            <div class="image-box"><img src="r_hacan.jpg"><p><a href="https://twilight-imperium.fandom.com/wiki/The_Emirates_of_Hacan" target="_blank">View Wiki</a></p></div>
-            <div class="image-box"><img src="Hacan-Slice.png"><p>Map Slice</p></div>
+        <div class="faction-card">
+            <div class="faction-header"><h2>Xxcha Kingdom</h2></div>
+            <div class="content-grid">
+                <div class="image-box"><img src="r_xxcha.jpg"></div>
+                <div class="image-box"><img src="xxcha slice.png"></div>
+            </div>
         </div>
-        <div class="description">
-            <h3>Faction Playstyle</h3>
-            <p>The merchant kings who can trade with anyone and barter with action cards. They control the game's economy and thrive when everyone else is spending.</p>
-        </div>
-    </div>
 
-    <div class="faction-card">
-        <div class="faction-header"><h2>Barony of Letnev</h2><span class="speaker-number">Speaker #5</span></div>
-        <div class="content-grid">
-            <div class="image-box"><img src="r_letnev.jpg"><p><a href="https://twilight-imperium.fandom.com/wiki/The_Barony_of_Letnev" target="_blank">View Wiki</a></p></div>
-            <div class="image-box"><img src="Barony-Slice.png"><p>Map Slice</p></div>
-        </div>
-        <div class="description">
-            <h3>Faction Playstyle</h3>
-            <p>A military industrial powerhouse. They focus on massive fleets, superior production capacity, and "Non-Euclidean Shielding" to absorb massive amounts of damage.</p>
-        </div>
-    </div>
-
-    <div class="faction-card">
-        <div class="faction-header"><h2>The Empyrean</h2><span class="speaker-number">Speaker #6</span></div>
-        <div class="content-grid">
-            <div class="image-box"><img src="r_empyrean.jpg"><p><a href="https://twilight-imperium.fandom.com/wiki/The_Empyrean" target="_blank">View Wiki</a></p></div>
-            <div class="image-box"><img src="Empyrean-Slice.png"><p>Map Slice</p></div>
-        </div>
-        <div class="description">
-            <h3>Faction Playstyle</h3>
-            <p>Keepers of the void who thrive on diplomacy and movement through nebulae. They are excellent at negotiating safe passage and benefiting from others' exploration.</p>
-        </div>
-    </div>
-
-    <div class="faction-card">
-        <div class="faction-header"><h2>Xxcha Kingdom</h2><span class="speaker-number">Speaker #7</span></div>
-        <div class="content-grid">
-            <div class="image-box"><img src="r_xxcha.jpg"><p><a href="https://twilight-imperium.fandom.com/wiki/The_Xxcha_Kingdom" target="_blank">View Wiki</a></p></div>
-            <div class="image-box"><img src="xxcha slice.png"><p>Map Slice</p></div>
-        </div>
-        <div class="description">
-            <h3>Faction Playstyle</h3>
-            <p>Defensive masters who use orbital cannons (PDS) and political influence to stall aggression and control the Galactic Council's agenda.</p>
-        </div>
-    </div>
-
-    <div class="faction-card">
-        <div class="faction-header"><h2>Sardakk N’orr</h2><span class="speaker-number">Speaker #8</span></div>
-        <div class="content-grid">
-            <div class="image-box"><img src="r_norr.jpg"><p><a href="https://twilight-imperium.fandom.com/wiki/Sardakk_N%27orr" target="_blank">View Wiki</a></p></div>
-            <div class="image-box"><img src="Sardakk-Slice.png"><p>Map Slice</p></div>
-        </div>
-        <div class="description">
-            <h3>Faction Playstyle</h3>
-            <p>A relentless swarm. They receive a permanent +1 bonus to all combat rolls, making even their basic units a major threat in any engagement.</p>
-        </div>
-    </div>
-
-    <div class="faction-card">
-        <div class="faction-header"><h2>The Last Bastion</h2><span class="speaker-number">Speaker #9</span></div>
-        <div class="content-grid">
-            <div class="image-box"><img src="r_last_bastion.jpg"><p><a href="https://twilight-imperium.fandom.com/wiki/Last_Bastion" target="_blank">View Wiki</a></p></div>
-            <div class="image-box"><img src="Last Bastion Slice.png"><p>Map Slice</p></div>
-        </div>
-        <div class="description">
-            <h3>Faction Playstyle</h3>
-            <p>A stalwart defensive faction designed to fortify their home slice and punish anyone foolish enough to breach their sovereign borders.</p>
+        <div class="faction-card">
+            <div class="faction-header"><h2>Sardakk N’orr</h2></div>
+            <div class="content-grid">
+                <div class="image-box"><img src="r_norr.jpg"></div>
+                <div class="image-box"><img src="Sardakk-Slice.png"></div>
+            </div>
         </div>
     </div>
 
 </div>
+
+<script>
+    function openTab(evt, tabName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tab-content");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tab-btn");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(tabName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+</script>
 
 </body>
 </html>
